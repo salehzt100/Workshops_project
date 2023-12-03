@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('workshop_id')->nullable();
             $table->foreignId('workshop_vehicle_id')->nullable();
             $table->string('person_name', 255);
-            $table->string('notes', 255)->nullable();
+            $table->string('notes', 255);
             $table->timestamps();
         });
     }

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->enum('employeeFinancialType', ['advance', 'overtime']);
             $table->unsignedBigInteger('user_id');
             $table->date('date');
-            $table->decimal('hours_worked', 5, 2)->nullable();
-            $table->decimal('rate_per_hour', 10, 2)->nullable();
+            $table->decimal('hours_worked', 5, 2);
+            $table->decimal('rate_per_hour', 10, 2);
             $table->decimal('amount', 10, 2);
             $table->timestamps();
         });

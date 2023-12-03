@@ -19,12 +19,10 @@ return new class extends Migration
             $table->decimal('TotalEarnings', 10, 2)->defult(0);
             $table->decimal('CashPayments', 10, 2)->defult(0);
             $table->decimal('CheckPayments', 10, 2)->defult(0);
-            $table->decimal('RemainingBalance', 10, 2)->defult(0);
+            $table->decimal('RemainingBalance', 10, 2);
             $table->timestamps();
         });
     }
-
-
 
     /**
      * Reverse the migrations.
