@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('TotalAmountPaidSoFar', 10, 2);
             $table->decimal('AmountPaidInCash', 10, 2);
             $table->decimal('AmountPaidByChecks', 10, 2);
-            $table->decimal('RemainingAmount', 10, 2);
+            $table->decimal('RemainingAmount', 10, 2)->defult(0);
             $table->string('SaleStatus', 50);
             $table->decimal('SalePrice', 10, 2);
             $table->timestamps();
