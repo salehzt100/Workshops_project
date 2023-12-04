@@ -30,7 +30,6 @@ class WorkshopFinancialProcessFactory extends Factory
             'HourlyPayment' => $hoursWorked * $hourlyRate,
         };
 
-
         return [
             'workshop_id' => Workshops::factory(),
             'payment_type' => $paymentType,

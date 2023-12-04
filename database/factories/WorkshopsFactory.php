@@ -23,7 +23,7 @@ class WorkshopsFactory extends Factory
             'owner_id' => Owners::factory(),
             'workshops_name' => $this->faker->word,
             'workshop_type' => $this->faker->randomElement(['sellingAggregate', 'transportation', 'workshop']),
-            'total_earnings' => $CheckPayments + $CashPayments +$RemainingBalance,
+            'desired_amount' => $CheckPayments + $CashPayments +$RemainingBalance,
             'cash_payments' => $CashPayments,
             'check_payments' => $CheckPayments,
             'remaining_balance' => $RemainingBalance

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('owner_id');
             $table->string('workshops_name');
             $table->enum('workshop_type', ['sellingAggregate','transportation','workshop']);
-            $table->integer('total_earnings')->defult(0);
+            $table->integer('desired_amount')->defult(0);
             $table->float('cash_payments')->defult(0);
             $table->float('check_payments')->defult(0);
             $table->float('remaining_balance', 10, 2);

@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
 
         // There is no need to call  factory()->create()   for thees tables
 
-        /*        Employee::factory(4)->create();
+              Employee::factory(4)->create();
                 EmployeeOvertime::factory(4)->create();
                 checks::factory(4)->create();
                 Expenses::factory(4)->create();
@@ -41,7 +41,6 @@ class DatabaseSeeder extends Seeder
                 Workshops::factory(4)->create();
                 WorkshopVehicles::factory(4)->create();
                 WorkshopFinancialProcess::factory(4)->create();
-        */
 
     }
 }
