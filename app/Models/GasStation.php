@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class GasStation extends Model
 {
     use HasFactory;
-    protected $fillable = ['Name', 'owner_id', 'Workshop_id', 'current_balance'];
+    protected $fillable = ['name', 'owner_id', 'workshop_id', 'current_balance'];
 
     public function refills()
     {
-        return $this->hasMany(GasStationRefill::class, 'GasStation_id');
+        return $this->hasMany(GasStationRefill::class, 'gas_station_id');
     }
 
     public function owner()
@@ -22,6 +22,6 @@ class GasStation extends Model
 
     public function workshop()
     {
-        return $this->belongsTo(Workshops::class, 'Workshop_id');
+        return $this->belongsTo(Workshops::class, 'workshop_id');
     }
 }

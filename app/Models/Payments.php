@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Payments extends Model
 {
     use HasFactory;
-    protected $fillable = ['payment_type', 'amount_type', 'check_id', 'date', 'employeeOverimeId', 'EmployeeId', 'stationRefillId', 'ExpensesId', 'vehichleIncomeId', 'workshopFinancialProcessID', 'note'];
+    protected $fillable = ['payment_type', 'amount_type', 'check_id', 'date', 'employee_overtime_id', 'employee_id', 'station_refill_id', 'expenses_id', 'vehicle_income_id', 'workshop_financial_process_id', 'note'];
 }

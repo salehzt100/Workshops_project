@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     use HasFactory;
+    protected $guarded =['id'];
     protected $fillable = ['name', 'national_id', 'phone', 'salary', 'total_advances'];
     public function overtimes()
     {

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Workshops extends Model
 {
     use HasFactory;
-    protected $fillable = ['owner_id', 'name', 'paymentTypeId', 'workshopType', 'TotalPayments', 'CashPayments', 'CheckPayments', 'RemainingBalance'];
+    protected $fillable = ['owner_id', 'name', 'workshop_type', 'total_payments', 'cash_payments', 'check_payments', 'remaining_balance'];
     public function owner()
     {
         return $this->belongsTo(Owners::class, 'owner_id');
