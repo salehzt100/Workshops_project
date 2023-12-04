@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('gas_stations', function (Blueprint $table) {
 
             $table->id();
-            $table->string('Name');
+            $table->string('name');
             $table->foreignId('owner_id');
-            $table->foreignId('Workshop_id');
+            $table->foreignId('workshop_id');
             $table->decimal('current_balance', 10, 2);
             $table->timestamps();
         });

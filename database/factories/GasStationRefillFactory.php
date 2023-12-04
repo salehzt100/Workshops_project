@@ -2,22 +2,22 @@
 
 namespace Database\Factories;
 
+use App\Models\GasStation;
+use App\Models\GasStationRefill;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\GasStationRefill>
- */
 class GasStationRefillFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+
     public function definition(): array
     {
         return [
-            //
+            'gas_station_id'=> GasStation::factory(),
+            'transaction_date'=>  $this->faker->date,
+            'amount'=>   $this->faker->randomFloat(2,10000,20000) ,
+            'notes'=>   $this->faker->sentence
         ];
+
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('employee_overtimes', function (Blueprint $table) {
             $table->id();
             $table->enum('employeeFinancialType', ['advance', 'overtime']);
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('employee_id')->constrained();
             $table->date('date');
             $table->decimal('hours_worked', 5, 2);
             $table->decimal('rate_per_hour', 10, 2);

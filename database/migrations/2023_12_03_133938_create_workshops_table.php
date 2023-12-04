@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('workshops', function (Blueprint $table) {
             $table->id();
             $table->foreignId('owner_id');
-            $table->string('WorkshopsName');
-            $table->enum('WorkshopType', ['sellingAggregate','transportation','workshop']);
-            $table->decimal('TotalEarnings', 10, 2)->defult(0);
-            $table->decimal('CashPayments', 10, 2)->defult(0);
-            $table->decimal('CheckPayments', 10, 2)->defult(0);
-            $table->decimal('RemainingBalance', 10, 2);
+            $table->string('workshops_name');
+            $table->enum('workshop_type', ['sellingAggregate','transportation','workshop']);
+            $table->integer('total_earnings')->defult(0);
+            $table->float('cash_payments')->defult(0);
+            $table->float('check_payments')->defult(0);
+            $table->float('remaining_balance', 10, 2);
             $table->timestamps();
         });
     }

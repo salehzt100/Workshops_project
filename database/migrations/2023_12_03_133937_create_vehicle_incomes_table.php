@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vehicles_income', function (Blueprint $table) {
+        Schema::create('vehicle_incomes', function (Blueprint $table) {
+
             $table->id();
-            $table->foreignId('WorkshopVehicles_id');
+            $table->foreignId('workshop_vehicles_id');
             $table->decimal('hours_worked', 5, 2);
             $table->decimal('income', 10, 2);
             $table->date('date');
+            $table->decimal('hourly_rate');
             $table->timestamps();
         });
     }

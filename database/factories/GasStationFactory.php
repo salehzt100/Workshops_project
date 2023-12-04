@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Owners;
+use App\Models\Workshops;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class GasStationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name'=>$this->faker->name,
+            'owner_id'=>Owners::factory(),
+            'workshop_id'=>Workshops::factory(),
+            'current_balance'=> $this->faker->numberBetween(10000,20000)
         ];
     }
 }

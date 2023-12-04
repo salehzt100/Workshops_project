@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('amount');
             $table->date('date');
             $table->foreignId('vehicle_id')->nullable();
-            $table->foreignId('station_id')->nullable();
+            $table->foreignId('gas_station_id')->nullable();
             $table->foreignId('workshop_id')->nullable();
             $table->foreignId('workshop_vehicle_id')->nullable();
             $table->string('person_name', 255);

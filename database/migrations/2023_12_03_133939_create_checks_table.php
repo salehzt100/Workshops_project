@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -14,7 +15,7 @@ return new class extends Migration
         Schema::create('checks', function (Blueprint $table) {
             $table->id();
             $table->integer('amount');
-            $table->integer('dueDate');
+            $table->date('dueDate');
             $table->string('owner', 255);
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('gas_station_refills', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('GasStation_id');
+            $table->foreignId('gas_station_id');
             $table->date('transaction_date');
             $table->decimal('amount', 10, 2);
             $table->string('notes', 255);
