@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'national_id', 'phone', 'salary', 'total_advances'];
+    public function overtimes()
+    {
+        return $this->hasMany(EmployeeOvertime::class, 'user_id');
+    }
 }

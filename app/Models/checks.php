@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class checks extends Model
 {
     use HasFactory;
+    protected $fillable = ['amount', 'dueDate', 'owner'];
 }
