@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Workshops extends Model
 {
     use HasFactory;
+    protected $fillable = ['owner_id', 'name', 'paymentTypeId', 'workshopType', 'TotalPayments', 'CashPayments', 'CheckPayments', 'RemainingBalance'];
+    public function owner()
+    {
+        return $this->belongsTo(Owners::class, 'owner_id');
+    }
+
+    public function workshopPaymentType()
+    {
+        return $this->belongsTo(workshopPaymentTypes::class, 'paymentTypeId');
+    }
+
+    public function vehicles()
+    {
+        return $this->hasManyThrough(Vehicles::class, WorkshopVehicles::class, 'workshop_id', 'id', 'id', 'vehicle_id');
+    }
 }
