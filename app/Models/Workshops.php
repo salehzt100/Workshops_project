@@ -16,7 +16,7 @@ class Workshops extends Model
 
     public function workshopPaymentType()
     {
-        return $this->belongsTo(workshopPaymentTypes::class, 'paymentTypeId');
+        return $this->belongsTo(workshopPaymentTypes::class, 'payment_type_id');
     }
 
     public function vehicles()
