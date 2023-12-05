@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class checks extends Model
+class Check extends Model
 {
     use HasFactory;
     protected $fillable = ['amount', 'dueDate', 'owner'];
