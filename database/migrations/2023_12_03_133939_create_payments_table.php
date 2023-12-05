@@ -15,18 +15,28 @@ return new class extends Migration
             $table->id();
             $table->enum('payment_type', ['employeeOvertime', 'employeeSalary', 'stationRefill', 'Expenses', 'vehicleIncome', 'workshopFinancialProcess']);
             $table->enum('amount_type', ['cash', 'check']);
-            $table->unsignedBigInteger('check_id')->nullable();
             $table->date('date');
-            $table->unsignedBigInteger('employeeOvertimeId')->nullable();
-            $table->unsignedBigInteger('EmployeeId')->nullable();
-            $table->unsignedBigInteger('stationRefillId')->nullable();
-            $table->unsignedBigInteger('ExpensesId')->nullable();
-            $table->unsignedBigInteger('vehicleIncomeId')->nullable();
-            $table->unsignedBigInteger('workshopFinancialProcessID')->nullable();
+            $table->foreinId('check_id')->nullable();
+            $table->foreinId('employeeOvertimeId')->nullable();
+            $table->foreinId('EmployeeId')->nullable();
+            $table->foreinId('stationRefillId')->nullable();
+            $table->foreinId('ExpensesId')->nullable();
+            $table->foreinId('vehicleIncomeId')->nullable();
+            $table->foreinId('workshopFinancialProcessID')->nullable();
             $table->string('note', 255);
             $table->timestamps();
         });
     }
+
+
+    ///
+    ///
+    ///
+    ///
+    ///
+    ///
+    ///
+    ///
 
     /**
      * Reverse the migrations.
