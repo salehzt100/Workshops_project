@@ -12,11 +12,11 @@ class WorkshopVehicles extends Model
 
     public function workshop()
     {
-        return $this->belongsTo(Workshops::class, 'workshop_id');
+        return $this->belongsTo(Workshop::class, 'workshop_id');
     }
 
     public function vehicle()
     {
-        return $this->belongsTo(Vehicles::class, 'vehicle_id');
+        return $this->belongsTo(Vehicle::class, 'vehicle_id');
     }
 }

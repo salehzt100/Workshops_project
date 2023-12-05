@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VehiclesIncome extends Model
+class VehicleIncome extends Model
 {
     use HasFactory;
     protected $fillable = ['WorkshopVehicles_id', 'hours_worked', 'income', 'date'];
