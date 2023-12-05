@@ -19,4 +19,9 @@ class WorkshopVehicles extends Model
     {
         return $this->belongsTo(Vehicle::class, 'vehicle_id');
     }
+
+    public function vehicleIncome()
+    {
+        return $this->hasMany(VehicleIncome::class);
+    }
 }
