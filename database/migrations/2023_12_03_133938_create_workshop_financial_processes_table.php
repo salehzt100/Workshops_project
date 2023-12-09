@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('workshop_id');
             $table->enum('payment_type', ['CupPayment', 'ContractPayment', 'HourlyPayment']);
-            $table->integer('cup_count')->nullable();
-            $table->decimal('price_per_cup', 10, 2)->nullable();
-            $table->decimal('hourly_rate', 10, 2)->nullable();
-            $table->decimal('hours_worked', 5, 2)->nullable();
+            $table->decimal('price_per_hour_and_cup', 10, 2)->nullable();
+            $table->decimal('rate_per_hour_and_cup', 10, 2)->nullable();
             $table->decimal('total_amount', 10, 2);
             $table->timestamps();
         });

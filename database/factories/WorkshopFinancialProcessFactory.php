@@ -19,28 +19,26 @@ class WorkshopFinancialProcessFactory extends Factory
     {
         $paymentType = $this->faker->randomElement(['CupPayment', 'ContractPayment', 'HourlyPayment']);
 
-        $hoursWorked = $this->faker->randomFloat(2, 1, 5);
-        $pricePerCup = $this->faker->randomFloat(2, 10, 50);
-        $hourlyRate = $this->faker->randomFloat(2, 20, 100);
-        $cupCount = $this->faker->numberBetween(1, 10);
+        $rate_per_hour_and_cup = $this->faker->randomFloat(2, 1, 5);
+        $price_per_hour_and_cup = $this->faker->randomFloat(2, 10, 50);
+
 
         $totalAmount = match ($paymentType) {
-            'CupPayment' => $cupCount * $pricePerCup,
+            'CupPayment' => $rate_per_hour_and_cup * $price_per_hour_and_cup,
             'ContractPayment' => $this->faker->randomFloat(2, 1000, 5000),
-            'HourlyPayment' => $hoursWorked * $hourlyRate,
+            'HourlyPayment' => $price_per_hour_and_cup * $price_per_hour_and_cup,
         };
 
         return [
             'workshop_id' => Workshop::factory(),
             'payment_type' => $paymentType,
-            'cup_count' => $cupCount,
-            'price_per_cup' => $pricePerCup,
-            'hourly_rate' => $hourlyRate,
-            'hours_worked' => $hoursWorked,
+            '$rate_per_hour_and_cup' => $rate_per_hour_and_cup,
+            'price_per_hour_and_cup' => $price_per_hour_and_cup,
             'total_amount' => $totalAmount,
             'created_at' => now(),
             'updated_at' => now(),
         ];
+
 
     }
 

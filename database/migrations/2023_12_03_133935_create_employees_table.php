@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('total_advances', 10, 2)->default(0.00);
             $table->enum('status',['active','notActive'])->default('active');
             $table->timestamps();
+
         });
     }
 
