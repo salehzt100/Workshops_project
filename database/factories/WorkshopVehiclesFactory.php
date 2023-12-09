@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Vehicles;
-use App\Models\Workshops;
+use App\Models\Workshop;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class WorkshopVehiclesFactory extends Factory
@@ -16,7 +16,7 @@ class WorkshopVehiclesFactory extends Factory
     public function definition(): array
     {
         return [
-            'workshop_id'=>Workshops::factory(),
+            'workshop_id'=>Workshop::factory(),
             'vehicle_id'=>Vehicles::factory()
         ];
     }

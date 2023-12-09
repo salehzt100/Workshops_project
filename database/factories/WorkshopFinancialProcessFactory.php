@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Workshops;
+use App\Models\Workshop;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -31,7 +31,7 @@ class WorkshopFinancialProcessFactory extends Factory
         };
 
         return [
-            'workshop_id' => Workshops::factory(),
+            'workshop_id' => Workshop::factory(),
             'payment_type' => $paymentType,
             'cup_count' => $cupCount,
             'price_per_cup' => $pricePerCup,

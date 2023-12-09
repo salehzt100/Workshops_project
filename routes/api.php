@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\v1\EmployeeController;
 use App\Http\Controllers\v1\EmployeeOvertimeController;
-use \App\Models\Workshops;
+use \App\Models\Workshop;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,10 +42,10 @@ Route::prefix('/v1')->group(function () {
 
 Route::prefix('/v1')->group(function () {
 
-    Route::GET('workshops', [Workshops::class, 'index']);
-    Route::GET('workshops/{id}', [Workshops::class, 'show']);
-    Route::PUT('workshops/{id}', [Workshops::class,'update']);
-    Route::POST('workshops', [Workshops::class, 'add']);
-    Route::DELETE('workshops/{id}', [Workshops::class,'delete']);
+    Route::GET('workshops', [Workshop::class, 'index']);
+    Route::GET('workshops/{id}', [Workshop::class, 'show']);
+    Route::PUT('workshops/{id}', [Workshop::class,'update']);
+    Route::POST('workshops', [Workshop::class, 'add']);
+    Route::DELETE('workshops/{id}', [Workshop::class,'delete']);
 });
 

@@ -12,7 +12,7 @@ use App\Models\Payments;
 use App\Models\VehicleIncomes;
 use App\Models\Vehicles;
 use App\Models\WorkshopFinancialProcess;
-use App\Models\Workshops;
+use App\Models\Workshop;
 use App\Models\WorkshopVehicles;
 use Database\Factories\workshopFinancialProcessFactory;
 use Illuminate\Database\Seeder;
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
                 Owners::factory(4)->create();
                 Payments::factory(4)->create();
                 VehicleIncomes::factory(4)->create();
-                Workshops::factory(4)->create();
+                Workshop::factory(4)->create();
                 WorkshopVehicles::factory(4)->create();
                 WorkshopFinancialProcess::factory(4)->create();
 

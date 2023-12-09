@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Employee extends Model
 {
@@ -13,15 +14,15 @@ class Employee extends Model
 
     protected $fillable = ['name', 'national_id', 'phone', 'status', 'national_id', 'salary', 'total_advances'];
 
-    public function overtimes()
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class, 'employee_id');
+    }
+    public function overtimes(): HasMany
     {
         return $this->hasMany(EmployeeOvertime::class, 'employee_id');
     }
 
-    public function payments()
-    {
-        return $this->hasMany(Payments::class, 'employee_id');
-    }
 
     protected $appends = ['total_overtime_hour', 'last_overtime_hour', 'overtime_and_award_collections'];
 
@@ -79,5 +80,6 @@ class Employee extends Model
         return $overtime_and_award_collections;
 
     }
+
 
 }
