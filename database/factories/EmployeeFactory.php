@@ -14,6 +14,7 @@ class EmployeeFactory extends Factory
             'phone' => $this->faker->phoneNumber,
             'salary' => $this->faker->randomFloat(2, 1000, 5000),
             'total_advances' => $this->faker->randomFloat(2, 0, 1000),
+            'status'=>$this->faker->randomElement(['active','notActive'])
         ];
 
     }

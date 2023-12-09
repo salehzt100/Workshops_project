@@ -19,16 +19,15 @@ class EmployeeOvertimeFactory extends Factory
     {
         $hours_worked = $this->faker->randomFloat(0, 1, 15);
         $hourlyRate = $this->faker->randomFloat(2, 20, 50);
-        $employeeFinancialType=$this->faker->randomElement(['advance', 'overtime']);
+        $employeeFinancialType=$this->faker->randomElement(['award', 'overtime']);
 
         $amount = match ($employeeFinancialType) {
             'overtime' => $hourlyRate * $hours_worked,
-            'advance' => $this->faker->randomFloat(2, 1000, 2000),
+            'award' => $this->faker->randomFloat(2, 1000, 2000),
         };
         return [
             'employee_id' => Employee::factory()->create()->id,
-            'employeeFinancialType'=>$employeeFinancialType,
-            'date' => $this->faker->date,
+            'employee_financial_type'=>$employeeFinancialType,
             'hours_worked' => $hours_worked ,
             'rate_per_hour' => $hourlyRate,
             'amount' => $amount

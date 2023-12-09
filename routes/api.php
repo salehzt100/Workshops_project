@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+declare(strict_types=1);
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Http\Controllers\v1\EmployeeController;
+use App\Http\Controllers\v1\EmployeeOvertimeController;
+use \App\Models\Workshops;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +18,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+// Employee routes
+
+Route::prefix('/v1')->group(function () {
+    Route::GET('employees', [EmployeeController::class, 'index']);
+    Route::GET('employees/{id}', [EmployeeController::class, 'show']);
+    Route::PUT('employees/{id}', [EmployeeController::class,'update']);
+    Route::POST('employees', [EmployeeController::class, 'create']);
+    Route::DELETE('employees/{id}', [EmployeeController::class,'delete']);
 });
+
+// EmployeeOvertime routes
+
+Route::prefix('/v1')->group(function () {
+    Route::PUT('employeeOvertimes/{id}', [EmployeeOvertimeController::class,'update']);
+    Route::POST('employee/{id}/employeeOvertimes', [EmployeeOvertimeController::class, 'add']);
+    Route::DELETE('employeeOvertimes/{id}', [EmployeeOvertimeController::class,'delete']);
+});
+
+// Workshops routes
+
+Route::prefix('/v1')->group(function () {
+
+    Route::GET('workshops', [Workshops::class, 'index']);
+    Route::GET('workshops/{id}', [Workshops::class, 'show']);
+    Route::PUT('workshops/{id}', [Workshops::class,'update']);
+    Route::POST('workshops', [Workshops::class, 'add']);
+    Route::DELETE('workshops/{id}', [Workshops::class,'delete']);
+});
+

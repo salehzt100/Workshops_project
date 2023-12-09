@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Category;
-use App\Models\Post;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
+use App\Http\Controllers\v1\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +17,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-
+/*
 Route::get('/', function () {
     \Illuminate\Support\Facades\DB::listen(function ($query){
         logger($query->sql);
@@ -26,21 +26,20 @@ Route::get('/', function () {
             "posts" => Post::with('category')->get()
         ]
     );}
-);
+);*/
 
 
-Route::get("/posts/{post:slug}", fn(Post $post) => view(
-    'post', [
-    "post" => $post
-
-]));
+/*
+Route::get("/api/{version}/employees", function(){
 
 
-Route::get("/categories/{category:slug}", fn(Category $category) => view(
-
-    'posts', [
-    "posts" => $category->posts
-
-]));
+    $current_page=key_exists('page',$_GET)?$_GET['page']:1;
+    $limit=key_exists('limit',$_GET)?$_GET['limit']:2;
+    $paginator=User::query()->paginate($limit,['id','userName','profile_image'],"page",$current_page);
+    return $paginator->items();
 
 
+});*/
+
+
+include(base_path('routes/api.php'));

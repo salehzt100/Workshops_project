@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('employee_overtimes', function (Blueprint $table) {
             $table->id();
-            $table->enum('employeeFinancialType', ['advance', 'overtime']);
-            $table->foreignId('employee_id')->constrained();
-            $table->date('date');
+            $table->enum('employee_financial_type', ['award', 'overtime']);
+            $table->foreignId('employee_id')->onDelete('cascade');
             $table->decimal('hours_worked', 5, 2);
             $table->decimal('rate_per_hour', 10, 2);
-            $table->decimal('amount', 10, 2);
+            $table->decimal('amount', 10, 2)->default(0.00);
             $table->timestamps();
         });
     }
