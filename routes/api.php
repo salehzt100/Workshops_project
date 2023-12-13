@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\v1\EmployeeController;
 use App\Http\Controllers\v1\EmployeeOvertimeController;
-use \App\Models\Workshop;
+use App\Http\Controllers\v1\WorkshopsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,10 +42,15 @@ Route::prefix('/v1')->group(function () {
 
 Route::prefix('/v1')->group(function () {
 
-    Route::GET('workshops', [Workshop::class, 'index']);
-    Route::GET('workshops/{id}', [Workshop::class, 'show']);
-    Route::PUT('workshops/{id}', [Workshop::class,'update']);
-    Route::POST('workshops', [Workshop::class, 'add']);
-    Route::DELETE('workshops/{id}', [Workshop::class,'delete']);
+    Route::GET('workshops', [WorkshopsController::class, 'index']);
+    Route::GET('workshops/{id}', [WorkshopsController::class, 'show']);
+    Route::PUT('workshops/{id}', [WorkshopsController::class,'update']);
+    Route::POST('/workshops', [WorkshopsController::class, 'add']);
+    Route::DELETE('workshops/{id}', [WorkshopsController::class,'delete']);
+    Route::GET('workshops/{id}/payments',[WorkshopsController::class,'getPayments']);
+    Route::POST('workshops/{id}/payments', [WorkshopsController::class,'setPayments']);
+    Route::GET('workshops/{id}/vehicles',[WorkshopsController::class,'getVehicles']);
+
+
 });
 

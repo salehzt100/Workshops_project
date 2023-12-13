@@ -17,27 +17,28 @@ class WorkshopFinancialProcessFactory extends Factory
      */
     public function definition(): array
     {
-        $paymentType = $this->faker->randomElement(['CupPayment', 'ContractPayment', 'HourlyPayment']);
+
+        $workshop=Workshop::factory()->create();
+        $workshop_type = $workshop->workshop_type;
 
         $rate_per_hour_and_cup = $this->faker->randomFloat(2, 1, 5);
         $price_per_hour_and_cup = $this->faker->randomFloat(2, 10, 50);
 
 
-        $totalAmount = match ($paymentType) {
-            'CupPayment' => $rate_per_hour_and_cup * $price_per_hour_and_cup,
-            'ContractPayment' => $this->faker->randomFloat(2, 1000, 5000),
-            'HourlyPayment' => $price_per_hour_and_cup * $price_per_hour_and_cup,
+        $totalAmount = match ($workshop_type) {
+            'sellingAggregate', 'transportation' => $rate_per_hour_and_cup * $price_per_hour_and_cup,
+            'workshop' => $this->faker->randomFloat(2, 1000, 5000)
         };
 
         return [
-            'workshop_id' => Workshop::factory(),
-            'payment_type' => $paymentType,
-            '$rate_per_hour_and_cup' => $rate_per_hour_and_cup,
+            'workshop_id' => $workshop->id,
+            'rate_per_hour_and_cup' => $rate_per_hour_and_cup,
             'price_per_hour_and_cup' => $price_per_hour_and_cup,
             'total_amount' => $totalAmount,
             'created_at' => now(),
             'updated_at' => now(),
         ];
+
 
 
     }

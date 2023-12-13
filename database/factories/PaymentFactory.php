@@ -5,13 +5,14 @@ namespace Database\Factories;
 use App\Models\checks;
 use App\Models\Employee;
 use App\Models\EmployeeOvertime;
-use App\Models\Expenses;
+use App\Models\Expense;
 use App\Models\GasStationRefill;
-use App\Models\VehicleIncomes;
+use App\Models\VehicleIncome;
+use App\Models\Workshop;
 use App\Models\WorkshopFinancialProcess;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PaymentsFactory extends Factory
+class PaymentFactory extends Factory
 {
 
     public function definition(): array
@@ -20,14 +21,13 @@ class PaymentsFactory extends Factory
 
             'payment_type' => $this->faker->randomElement(['employeeOvertime', 'employeeSalary', 'stationRefill', 'Expenses', 'vehicleIncome', 'workshopFinancialProcess']),
             'amount_type' => $this->faker->randomElement(['cash', 'check']),
-            'date' => $this->faker->date(),
             'check_id' =>  checks::factory(),
             'employee_overtime_id' => EmployeeOvertime::factory(),
             'employee_id' => Employee::factory(),
             'gas_station_refill_id' => GasStationRefill::factory(),
-            'expenses_id' => Expenses::factory(),
-            'vehicle_income_id' =>VehicleIncomes::factory() ,
-            'workshop_financial_process_id' =>WorkshopFinancialProcess::factory(),
+            'expenses_id' => Expense::factory(),
+            'vehicle_income_id' =>VehicleIncome::factory() ,
+            'workshop_id' =>Workshop::factory(),
             'amount'=>$this->faker->randomNumber(4),
             'note' => $this->faker->sentence,
         ];

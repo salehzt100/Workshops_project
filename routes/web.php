@@ -16,8 +16,8 @@ use App\Http\Controllers\v1\EmployeeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 /*
+
 Route::get('/', function () {
     \Illuminate\Support\Facades\DB::listen(function ($query){
         logger($query->sql);

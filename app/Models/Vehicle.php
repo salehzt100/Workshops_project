@@ -12,9 +12,10 @@ class Vehicle extends Model
     use HasFactory;
     protected $fillable = ['name', 'purchased_price', 'type', 'number_or_identifier', 'total_amount_paid_so_far', 'amount_paid_cash', 'amount_paid_checks', 'remaining_amount', 'sale_status', 'sale_price'];
 
-    public function workshops(): BelongsToMany
+
+    public function workshops()
     {
-        return $this->belongsToMany(Workshop::class, 'WorkshopVehicles')->withPivot('id');
+        return $this->belongsToMany(Workshop::class);
     }
     public function expenses(): HasMany
     {

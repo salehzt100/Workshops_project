@@ -6,7 +6,7 @@ namespace App\Http\Controllers\v1;
 
 use Illuminate\Routing\Controller;
 
-class checksController extends Controller
+class checkController extends Controller
 {
     //
 }

@@ -18,6 +18,6 @@ class Owner extends Model
 
     public function workshops(): HasMany
     {
-        return $this->hasMany(Workshop::class, 'owner_id');
+        return $this->hasMany(Workshop::class,'owner_id');
     }
 }

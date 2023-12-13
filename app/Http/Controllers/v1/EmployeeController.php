@@ -22,8 +22,9 @@ class EmployeeController extends Controller
     public function index(Request $request)
 
     {
-        $current_page = $request->input('page', 1);
-        $limit = $request->input('limit', 2);
+
+        $current_page = $request->input('page',1);
+        $limit = $request->input('limit',2);
         $employees = Employee::query()
             ->paginate($limit, ['id', 'name', 'national_id', 'phone', 'status', 'created_at'], "page", $current_page)
             ->items();
@@ -34,8 +35,9 @@ class EmployeeController extends Controller
     public function show($id)
     {
 
+
         $employee = Employee::query()
-            ->with(["payments:id,payment_type,employee_id,amount,date", "overtimes:id,employee_id,employee_financial_type,amount"])
+            ->with(["payments:id,payment_type,employee_id,amount,created_at", "overtimes:id,employee_id,employee_financial_type,amount"])
             ->find($id, ['id', 'name', 'national_id', 'phone', 'status', 'created_at']);
 
         if (!$employee) {
@@ -83,6 +85,7 @@ class EmployeeController extends Controller
 
     public function update(Request $request, $id)
     {
+
 
         try {
 

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Owners;
+use App\Models\Owner;
 use App\Models\Workshop;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,7 +20,7 @@ class GasStationFactory extends Factory
     {
         return [
             'name'=>$this->faker->name,
-            'owner_id'=>Owners::factory(),
+            'owner_id'=>Owner::factory(),
             'workshop_id'=>Workshop::factory(),
             'current_balance'=> $this->faker->numberBetween(10000,20000)
         ];

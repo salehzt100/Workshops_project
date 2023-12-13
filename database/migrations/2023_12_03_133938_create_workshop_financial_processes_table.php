@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create( 'workshop_financial_processes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('workshop_id');
-            $table->enum('payment_type', ['CupPayment', 'ContractPayment', 'HourlyPayment']);
             $table->decimal('price_per_hour_and_cup', 10, 2)->nullable();
             $table->decimal('rate_per_hour_and_cup', 10, 2)->nullable();
             $table->decimal('total_amount', 10, 2);

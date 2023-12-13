@@ -15,7 +15,10 @@ class WorkshopFinancialProcess extends Model
     {
         return $this->belongsTo(Workshop::class);
     }
-
+    public function vehicles()
+    {
+        return $this->belongsToMany(Vehicle::class);
+    }
     public function payments()
     {
         return $this->hasMany(Payment::class, 'workshop_financial_process_id');

@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Vehicles;
-use App\Models\Workshop;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class WorkshopVehiclesFactory extends Factory
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Owners>
+ */
+class OwnerFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,8 +17,8 @@ class WorkshopVehiclesFactory extends Factory
     public function definition(): array
     {
         return [
-            'workshop_id'=>Workshop::factory(),
-            'vehicle_id'=>Vehicles::factory()
+            'name'=> $this->faker->name,
+            'phone'=>$this->faker->phoneNumber(),
         ];
     }
 }
