@@ -81,10 +81,10 @@ class Vehicle extends Model
         $vehicleWorkshops = VehicleWorkshops::where('vehicle_id', $this->id)->get();
 
         if ($vehicleWorkshops->isEmpty()) {
-            return 'unworked';
+            return 'not working';
         }
 
-        return 'worked';
+        return 'working';
     }
 
 }
