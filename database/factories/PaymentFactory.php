@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\EmployeeOvertime;
 use App\Models\Expense;
 use App\Models\GasStationRefill;
+use App\Models\Vehicle;
 use App\Models\VehicleIncome;
 use App\Models\Workshop;
 use App\Models\WorkshopFinancialProcess;
@@ -19,7 +20,7 @@ class PaymentFactory extends Factory
     {
         return [
 
-            'payment_type' => $this->faker->randomElement(['employeeOvertime', 'employeeSalary', 'stationRefill', 'Expenses', 'vehicleIncome', 'workshopFinancialProcess']),
+            'payment_type' => $this->faker->randomElement(['employeeOvertime','vehicleCost', 'employeeSalary', 'stationRefill', 'Expenses', 'vehicleIncome', 'workshopFinancialProcess']),
             'amount_type' => $this->faker->randomElement(['cash', 'check']),
             'check_id' =>  checks::factory(),
             'employee_overtime_id' => EmployeeOvertime::factory(),
@@ -28,6 +29,7 @@ class PaymentFactory extends Factory
             'expenses_id' => Expense::factory(),
             'vehicle_income_id' =>VehicleIncome::factory() ,
             'workshop_id' =>Workshop::factory(),
+            'vehicle_id'=>Vehicle::factory(),
             'amount'=>$this->faker->randomNumber(4),
             'note' => $this->faker->sentence,
         ];

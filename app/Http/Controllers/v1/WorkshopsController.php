@@ -7,7 +7,7 @@ use App\Models\checks;
 use App\Models\Owner;
 use App\Models\Payment;
 use App\Models\Workshop;
-use App\Models\VehicleWorkshop;
+use App\Models\VehicleWorkshops;
 use http\Env\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Employee;
 use Illuminate\Validation\Rule;
 use mysql_xdevapi\Collection;
+use PHPUnit\Exception;
 
 
 class WorkshopsController extends Controller
@@ -25,6 +26,7 @@ class WorkshopsController extends Controller
     public function index(Request $request)
 
     {
+        try {
 
 
         $current_page = $request->input('page', 1);
@@ -41,6 +43,14 @@ class WorkshopsController extends Controller
             'data' => $workshops
 
         ], 200);
+            }catch(Exception $e){
+            return response()->json([
+              'error'=>$e->getMessage()
+
+
+            ], 303);
+
+        }
     }
 
     public function show($id)
@@ -285,6 +295,25 @@ class WorkshopsController extends Controller
 
         $workshop=Workshop::find($id);
 
-        return $workshop->vehicles;
+        if (!$workshop) {
+
+            return response()->json(['error' => 'Workshop not found With ID '.$id], 404);
+        }
+        $vehicles = $workshop->vehicles->map(function ($vehicle) {
+
+            return [
+                'id' => $vehicle->id,
+                'vehicle_name' => $vehicle->vehicle_name,
+                'vehicle_type' => $vehicle->vehicle_type,
+                'vehicles_number_or_identifier' => $vehicle->vehicles_number_or_identifier,
+            ];
+        });
+
+
+        return response()->json([
+            'data' => $vehicles
+        ], 200);
+
+
     }
 }

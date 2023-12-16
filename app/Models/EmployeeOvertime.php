@@ -11,6 +11,7 @@ class EmployeeOvertime extends Model
 {
     use HasFactory;
 
+
     protected $fillable=['employee_financial_type','hours_worked','rate_per_hour','amount','employee_id'];
 
     public  function employee(){

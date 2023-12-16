@@ -5,7 +5,7 @@ use Illuminate\Routing\Controller;
 
 use Illuminate\Http\Request;
 
-class WorkshopsVehiclesController extends Controller
+class VehicleWorkshopController extends Controller
 {
 
 

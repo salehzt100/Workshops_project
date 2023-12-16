@@ -12,7 +12,7 @@ class Payment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['amount', 'amount_type', 'check_id', 'employee_overtime_id', 'employee_id', 'gas_station_refill_id', 'expense_id', 'vehicle_income_id', 'workshop_id', 'note'];
+    protected $fillable = ['amount', 'payment_type','amount_type', 'check_id', 'employee_overtime_id', 'employee_id', 'gas_station_refill_id', 'expense_id', 'vehicle_income_id', 'workshop_id', 'note','vehicle_id'];
 
 
     public function workshops(){
@@ -35,7 +35,7 @@ class Payment extends Model
     {
         return $this->hasOne(checks::class);
     }
-/*
+
     public function expense(): BelongsTo
     {
         return $this->belongsTo(Expense::class);
@@ -50,5 +50,5 @@ class Payment extends Model
     {
         return $this->belongsTo(WorkshopFinancialProcess::class);
     }
-*/
+
 }

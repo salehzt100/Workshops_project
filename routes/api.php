@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\v1\EmployeeController;
 use App\Http\Controllers\v1\EmployeeOvertimeController;
 use App\Http\Controllers\v1\WorkshopsController;
+use App\Http\Controllers\v1\CheckController;
+use App\Http\Controllers\v1\VehiclesController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -54,3 +56,32 @@ Route::prefix('/v1')->group(function () {
 
 });
 
+
+// Vehicles  routes
+
+Route::prefix('/v1')->group(function () {
+
+    Route::GET('vehicles', [VehiclesController::class, 'index']);
+    Route::GET('vehicles/{id}', [VehiclesController::class, 'show']);
+    Route::PUT('vehicles/{id}', [VehiclesController::class,'update']);
+    Route::POST('vehicles', [VehiclesController::class, 'add']);
+    Route::DELETE('vehicles/{id}', [VehiclesController::class,'delete']);
+    Route::GET('vehicles/{id}/payments',[VehiclesController::class,'getPayments']);
+    Route::POST('vehicles/{id}/payments', [VehiclesController::class,'setPayments']);
+
+
+});
+
+
+//   check routs
+
+Route::prefix('/v1')->group(function () {
+
+    Route::GET('checks', [CheckController::class, 'index']);
+
+    Route::GET('checks/{id}', [checkController::class, 'show']);
+    Route::PUT('checks/{id}', [checkController::class,'update']);
+    Route::POST('checks', [checkController::class, 'add']);
+    Route::DELETE('checks/{id}', [checkController::class,'delete']);
+
+});

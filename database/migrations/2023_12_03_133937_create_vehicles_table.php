@@ -13,24 +13,19 @@ return new class extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
-            $table->string('vehicles_name');
+            $table->string('vehicle_name');
             $table->decimal('full_vehicles_price', 10, 2);
             $table->string('vehicle_type');
             $table->string('vehicles_number_or_identifier', 50);
-            $table->decimal('total_amount_paid_so_far', 10, 2);
-            $table->decimal('amount_paid_in_cash', 10, 2);
-            $table->decimal('amount_paid_by_checks', 10, 2);
-            $table->decimal('remaining_amount', 10, 2);
-            $table->string('sale_status', 50);
-            $table->decimal('sale_price', 10, 2);
+            $table->enum('sale_status', ['sold','unsold'])->default('unsold');
+            $table->decimal('sale_price', 10, 2)->default(0);
             $table->timestamps();
         });
 
+
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('vehicles');

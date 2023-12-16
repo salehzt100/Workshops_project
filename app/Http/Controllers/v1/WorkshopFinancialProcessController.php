@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class WorkshopFinancialProcessController extends Controller
 {
-    //
+
+
+
 }

@@ -15,10 +15,14 @@ class Workshop extends Model
     {
         return $this->belongsTo(Owner::class);
     }
-
-    public function workshopVehicle()
+    public function vehicles()
     {
-        return $this->hasMany(VehicleWorkshop::class, 'workshop_id');
+        return $this->belongsToMany(Vehicle::class, 'vehicle_workshops');
+    }
+
+    public function vehicleWorkshop()
+    {
+        return $this->hasMany(VehicleWorkshops::class, 'workshop_id');
     }
 
     public function payments()
@@ -29,11 +33,6 @@ class Workshop extends Model
     public function workshopFinancialProcess()
     {
         return $this->hasMany(WorkshopFinancialProcess::class, 'workshop_id');
-    }
-
-    public function vehicles()
-    {
-        return $this->belongsToMany(Vehicle::class);
     }
 
     protected $appends = ['count_vehicle', 'total_amount', 'total_cash_payments', 'total_check_payments', 'remaining_balance'];
@@ -77,8 +76,7 @@ class Workshop extends Model
 
     public function getCountVehicleAttribute()
     {
-        $count_vehicle = $this->vehicles()->count();
-        return $count_vehicle;
+        return $this->vehicles()->count();
     }
 
     public function getTotalAmountAttribute()

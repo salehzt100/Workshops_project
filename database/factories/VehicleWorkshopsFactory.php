@@ -6,7 +6,7 @@ use App\Models\Vehicle;
 use App\Models\Workshop;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class VehicleWorkshopFactory extends Factory
+class VehicleWorkshopsFactory extends Factory
 {
     /**
      * Define the model's default state.

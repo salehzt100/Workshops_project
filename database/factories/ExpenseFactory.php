@@ -5,7 +5,7 @@ namespace Database\Factories;
 use App\Models\GasStation;
 use App\Models\Vehicle;
 use App\Models\Workshop;
-use App\Models\VehicleWorkshop;
+use App\Models\VehicleWorkshops;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ExpenseFactory extends Factory
@@ -20,7 +20,7 @@ class ExpenseFactory extends Factory
             'vehicle_id' => Vehicle::factory(),
             'Gas_station_id' => GasStation::factory(),
             'workshop_id' => Workshop::factory(),
-            'workshop_vehicle_id' => VehicleWorkshop::factory(),
+            'workshop_vehicle_id' => VehicleWorkshops::factory(),
             'person_name' => $this->faker->name,
             'notes' => $this->faker->sentence,
         ];
