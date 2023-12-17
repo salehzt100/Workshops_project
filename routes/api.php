@@ -52,7 +52,7 @@ Route::prefix('/v1')->group(function () {
     Route::GET('workshops/{id}/payments', [WorkshopsController::class, 'getPayments']);
     Route::POST('workshops/{id}/payments', [WorkshopsController::class, 'setPayments']);
     Route::GET('workshops/{id}/vehicles', [WorkshopsController::class, 'getVehicles']);
-    Route::POST('workshops/{id}/vehicles', [WorkshopsController::class, 'setVehicles']);
+    Route::POST('workshops/{workshop_id}/vehicles/{vehicle_id}', [WorkshopsController::class, 'setVehicles']);
 
 
 });

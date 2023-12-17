@@ -6,6 +6,7 @@ namespace App\Http\Controllers\v1;
 use App\Models\checks;
 use App\Models\Owner;
 use App\Models\Payment;
+use App\Models\Vehicle;
 use App\Models\Workshop;
 use App\Models\VehicleWorkshops;
 use http\Env\Response;
@@ -317,8 +318,43 @@ class WorkshopsController extends Controller
 
     }
 
-    public function setVehicles()
+    public function setVehicles(Request $request)
     {
-    return ['message'=>'implementation function setVehicles  required'] ;
+        $workshop=Workshop::find($request->workshop_id);
+
+        if (!$workshop) {
+            return response()->json([
+                'status' => 404,
+                'error' => 'workshop with ID ' . $request->workshop_id . ' not found.'
+            ], 404);
+        }
+
+        $vehicle=Vehicle::find($request->vehicle_id);
+
+        if (!$vehicle) {
+            return response()->json([
+                'status' => 404,
+                'error' => 'vehicle with ID ' . $request->vehicle_id . ' not found.'
+            ], 404);
+        }
+
+        $check_found=VehicleWorkshops::where('vehicle_id',$request->vehicle_id)->first();
+
+        if ($check_found){
+            return response()->json([
+                'error' => 'vehicle with ID ' . $request->vehicle_id . ' is working within workshop has ID '.$check_found->workshop_id
+            ], 409);
+
+        }
+
+        $vehicle_workshop=VehicleWorkshops::create([
+         'workshop_id'=>$request->workshop_id,
+         'vehicle_id'=>$request->vehicle_id
+        ]);
+
+        return response()->json([
+            'message' => 'vehicle With ID: ' . $request->vehicle_id . ' added Successfully to workshop With ID ' . $request->workshop_id,
+            'data' => $vehicle_workshop
+        ], 200);
     }
 }
