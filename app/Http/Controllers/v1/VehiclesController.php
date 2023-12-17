@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Models\checks;
+use App\Models\Expense;
 use App\Models\Payment;
 use App\Models\Vehicle;
 use Illuminate\Routing\Controller;
@@ -221,6 +222,63 @@ public  function  delete($id)
             return response()->json(['error' => $e->validator->errors()]);
         }
     }
+
+
+    public function getExpenses(Request $request, $id)
+    {
+        $expenses = Expense::where('vehicle_id', $id)
+            ->select(['id', 'expense_type', 'amount', 'vehicle_id', 'person_name', 'notes'])
+            ->get();
+
+        return response()->json([
+            'data' => $expenses
+        ], 200);
+    }
+
+    public function setExpenses(Request $request, $id){
+
+        try {
+            $vehicle = Vehicle::find($id);
+
+            if (!$vehicle) {
+                return response()->json([
+                    'status' => 404,
+                    'error' => 'Vehicle with ID ' . $id . ' not found.'
+                ], 404);
+            }
+
+            $validated_data = $request->validate([
+                'expense_type' => 'required|in:maintenance,LubricantsOils',
+                'amount' => 'required|numeric',
+                'note' => 'string',
+                'person_name' => 'required|string'
+            ]);
+
+            $validated_data['vehicle_id'] = $id;
+            $vehicle_expense = Expense::create($validated_data);
+
+            $payment = [
+                'amount_type' => 'cash',
+                'payment_type' => 'Expenses',
+                'amount' => $vehicle_expense->amount,
+                'note' => $vehicle_expense->note,
+                'expenses_id' => $vehicle_expense->id
+            ];
+
+            Payment::create($payment);
+            return response()->json([
+                'message' => 'expense added successfully with ID: ' . $vehicle_expense->id . ' to vehicle with ID ' . $id,
+                'data' => $vehicle_expense
+            ], 200);
+
+        } catch (ValidationException $e) {
+            return response()->json(['error' => $e->validator->errors()]);
+        }
+
+
+
+    }
+
 
 
 

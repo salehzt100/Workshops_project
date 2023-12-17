@@ -6,7 +6,6 @@ use App\Models\checks;
 use App\Models\Employee;
 use App\Models\EmployeeOvertime;
 use App\Models\Expense;
-use App\Models\GasStationRefill;
 use App\Models\Vehicle;
 use App\Models\VehicleIncome;
 use App\Models\Workshop;
@@ -25,7 +24,6 @@ class PaymentFactory extends Factory
             'check_id' =>  checks::factory(),
             'employee_overtime_id' => EmployeeOvertime::factory(),
             'employee_id' => Employee::factory(),
-            'gas_station_refill_id' => GasStationRefill::factory(),
             'expenses_id' => Expense::factory(),
             'vehicle_income_id' =>VehicleIncome::factory() ,
             'workshop_id' =>Workshop::factory(),

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Expense extends Model
 {
     use HasFactory;
-    protected $fillable = ['expense_type', 'amount', 'date', 'vehicle_id', 'gas_station_id', 'workshop_id', 'workshop_vehicle_id', 'person_name', 'notes'];
+    protected $fillable = ['expense_type', 'amount', 'vehicle_id', 'gas_station_id', 'workshop_id', 'workshop_vehicle_id', 'person_name', 'notes'];
 
     public function vehicle(): BelongsTo
     {

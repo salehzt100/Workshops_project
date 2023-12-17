@@ -14,10 +14,7 @@ class GasStation extends Model
     protected $guarded = ['id'];
     protected $fillable = ['name', 'owner_id', 'Workshop_id', 'current_balance'];
 
-    public function refills(): HasMany
-    {
-        return $this->hasMany(GasStationRefill::class, 'gas_station_id');
-    }
+
 
     public function owner(): BelongsTo
     {

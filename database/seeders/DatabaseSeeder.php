@@ -7,7 +7,6 @@ use App\Models\EmployeeOvertime;
 use App\Models\Employee;
 use App\Models\Expense;
 use App\Models\GasStation;
-use App\Models\GasStationRefill;
 use App\Models\Owner;
 use App\Models\Payment;
 use App\Models\VehicleIncome;
@@ -35,7 +34,6 @@ class DatabaseSeeder extends Seeder
         Checks::factory(4)->create();
         Expense::factory(4)->create();
         GasStation::factory(4)->create();
-        GasStationRefill::factory(4)->create();
         Owner::factory(4)->create();
         Payment::factory(4)->create();
         VehicleIncome::factory(4)->create();

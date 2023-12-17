@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('check_id')->nullable();
             $table->foreignId('employee_overtime_id')->nullable();
             $table->foreignId('employee_id')->nullable()->onDelete('cascade');
-            $table->foreignId('gas_station_refill_id')->nullable();
             $table->foreignId('expenses_id')->nullable();
             $table->foreignId('vehicle_income_id')->nullable();
             $table->foreignId('vehicle_id')->nullable();

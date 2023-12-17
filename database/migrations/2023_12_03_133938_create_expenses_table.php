@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->enum('expenseType', ['operational', 'fuelWithdraw', 'fuelCash', 'maintenance', 'LubricantsOils']);
+            $table->enum('expense_type', ['operational', 'fuelWithdraw', 'fuelCash', 'maintenance', 'LubricantsOils']);
             $table->integer('amount');
-            $table->date('date');
             $table->foreignId('vehicle_id')->nullable();
             $table->foreignId('gas_station_id')->nullable();
             $table->foreignId('workshop_id')->nullable();
             $table->foreignId('workshop_vehicle_id')->nullable();
             $table->string('person_name', 255);
-            $table->string('notes', 255);
+            $table->string('notes', 255)->nullable();
             $table->timestamps();
         });
     }

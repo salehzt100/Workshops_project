@@ -14,9 +14,8 @@ class ExpenseFactory extends Factory
     public function definition(): array
     {
         return [
-            'expenseType' => $this->faker->randomElement(['operational', 'fuelWithdraw', 'fuelCash', 'maintenance', 'LubricantsOils']),
+            'expense_type' => $this->faker->randomElement(['operational', 'fuelWithdraw', 'fuelCash', 'maintenance', 'LubricantsOils']),
             'amount' => $this->faker->numberBetween(100, 10000),
-            'date' => $this->faker->date(),
             'vehicle_id' => Vehicle::factory(),
             'Gas_station_id' => GasStation::factory(),
             'workshop_id' => Workshop::factory(),

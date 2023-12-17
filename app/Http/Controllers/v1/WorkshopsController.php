@@ -316,4 +316,9 @@ class WorkshopsController extends Controller
 
 
     }
+
+    public function setVehicles()
+    {
+    return ['message'=>'implementation function setVehicles  required'] ;
+    }
 }
