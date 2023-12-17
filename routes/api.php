@@ -9,7 +9,7 @@ use App\Http\Controllers\v1\EmployeeOvertimeController;
 use App\Http\Controllers\v1\WorkshopsController;
 use App\Http\Controllers\v1\CheckController;
 use App\Http\Controllers\v1\VehiclesController;
-
+use App\Http\Controllers\v1\OwnersController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -86,4 +86,17 @@ Route::prefix('/v1')->group(function () {
     Route::POST('checks', [checkController::class, 'add']);
     Route::DELETE('checks/{id}', [checkController::class, 'delete']);
 
+});
+
+
+
+
+// Owner routes
+
+Route::prefix('/v1')->group(function () {
+    Route::GET('owners', [OwnersController::class, 'index']);
+    Route::GET('owners/{id}', [OwnersController::class, 'show']);
+    Route::PUT('owners/{id}', [OwnersController::class, 'update']);
+    Route::POST('owners', [OwnersController::class, 'add']);
+    Route::DELETE('owners/{id}', [OwnersController::class, 'delete']);
 });
