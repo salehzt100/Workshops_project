@@ -29,8 +29,8 @@ class WorkshopFinancialProcessFactory extends Factory
             'sellingAggregate', 'transportation' => $rate_per_hour_and_cup * $price_per_hour_and_cup,
             'workshop' => $this->faker->randomFloat(2, 1000, 5000)
         };
-
         return [
+            'payment_type'=>$this->faker->randomElement(['CupPayment', 'ContractPayment', 'HourlyPayment']),
             'workshop_id' => $workshop->id,
             'rate_per_hour_and_cup' => $rate_per_hour_and_cup,
             'price_per_hour_and_cup' => $price_per_hour_and_cup,
