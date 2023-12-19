@@ -10,6 +10,7 @@ use App\Http\Controllers\v1\WorkshopsController;
 use App\Http\Controllers\v1\CheckController;
 use App\Http\Controllers\v1\VehiclesController;
 use App\Http\Controllers\v1\OwnersController;
+use App\Http\Controllers\v1\WorkshopFinancialProcessController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -99,4 +100,16 @@ Route::prefix('/v1')->group(function () {
     Route::PUT('owners/{id}', [OwnersController::class, 'update']);
     Route::POST('owners', [OwnersController::class, 'add']);
     Route::DELETE('owners/{id}', [OwnersController::class, 'delete']);
+});
+
+
+
+// workshop financial routes
+
+Route::prefix('/v1')->group(function () {
+    Route::GET('workshopFinancials', [WorkshopFinancialProcessController::class, 'index']);
+    Route::GET('workshopFinancials/{id}', [WorkshopFinancialProcessController::class, 'show']);
+    Route::PUT('workshopFinancials/{id}', [WorkshopFinancialProcessController::class, 'update']);
+    Route::POST('workshopFinancials', [WorkshopFinancialProcessController::class, 'add']);
+    Route::DELETE('workshopFinancials/{id}', [WorkshopFinancialProcessController::class, 'delete']);
 });
