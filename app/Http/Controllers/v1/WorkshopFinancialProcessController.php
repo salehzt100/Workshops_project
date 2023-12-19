@@ -133,9 +133,4 @@ class WorkshopFinancialProcessController extends Controller
         return response()->json(['message' => 'Workshop financial deleted successfully'], 200);
     }
 
-
-
-
-
-
 }
