@@ -9,20 +9,15 @@ use App\Models\Payment;
 use App\Models\Vehicle;
 use App\Models\Workshop;
 use App\Models\VehicleWorkshops;
-use http\Env\Response;
+use App\Models\WorkshopFinancialProcess;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Models\Employee;
-use Illuminate\Validation\Rule;
-use mysql_xdevapi\Collection;
 use PHPUnit\Exception;
 
 
 class WorkshopsController extends Controller
 {
-
 
     public function index(Request $request)
 
@@ -30,23 +25,23 @@ class WorkshopsController extends Controller
         try {
 
 
-        $current_page = $request->input('page', 1);
-        $limit = $request->input('limit', 2);
+            $current_page = $request->input('page', 1);
+            $limit = $request->input('limit', 2);
 
-        $workshops = Workshop::query()
-            ->with('owner:id,name,phone')
-            ->select(['id', 'workshop_name', 'workshop_type', 'status', 'count_employees', 'owner_id'])
-            ->paginate($limit, ['*'], 'page', $current_page)
-            ->items();
+            $workshops = Workshop::query()
+                ->with('owner:id,name,phone')
+                ->select(['id', 'workshop_name', 'workshop_type', 'status', 'count_employees', 'owner_id'])
+                ->paginate($limit, ['*'], 'page', $current_page)
+                ->items();
 
-        return response()->json([
-            'status' => 20,
-            'data' => $workshops
-
-        ], 200);
-            }catch(Exception $e){
             return response()->json([
-              'error'=>$e->getMessage()
+                'status' => 20,
+                'data' => $workshops
+
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
 
 
             ], 303);
@@ -292,13 +287,14 @@ class WorkshopsController extends Controller
         }
     }
 
-    public function getVehicles($id){
+    public function getVehicles($id)
+    {
 
-        $workshop=Workshop::find($id);
+        $workshop = Workshop::find($id);
 
         if (!$workshop) {
 
-            return response()->json(['error' => 'Workshop not found With ID '.$id], 404);
+            return response()->json(['error' => 'Workshop not found With ID ' . $id], 404);
         }
         $vehicles = $workshop->vehicles->map(function ($vehicle) {
 
@@ -320,7 +316,7 @@ class WorkshopsController extends Controller
 
     public function setVehicles(Request $request)
     {
-        $workshop=Workshop::find($request->workshop_id);
+        $workshop = Workshop::find($request->workshop_id);
 
         if (!$workshop) {
             return response()->json([
@@ -329,7 +325,7 @@ class WorkshopsController extends Controller
             ], 404);
         }
 
-        $vehicle=Vehicle::find($request->vehicle_id);
+        $vehicle = Vehicle::find($request->vehicle_id);
 
         if (!$vehicle) {
             return response()->json([
@@ -338,23 +334,30 @@ class WorkshopsController extends Controller
             ], 404);
         }
 
-        $check_found=VehicleWorkshops::where('vehicle_id',$request->vehicle_id)->first();
+        $check_found = VehicleWorkshops::where('vehicle_id', $request->vehicle_id)->first();
 
-        if ($check_found){
+        if ($check_found) {
             return response()->json([
-                'error' => 'vehicle with ID ' . $request->vehicle_id . ' is working within workshop has ID '.$check_found->workshop_id
+                'error' => 'vehicle with ID ' . $request->vehicle_id . ' is working within workshop has ID ' . $check_found->workshop_id
             ], 409);
 
         }
 
-        $vehicle_workshop=VehicleWorkshops::create([
-         'workshop_id'=>$request->workshop_id,
-         'vehicle_id'=>$request->vehicle_id
+        $vehicle_workshop = VehicleWorkshops::create([
+            'workshop_id' => $request->workshop_id,
+            'vehicle_id' => $request->vehicle_id
         ]);
 
         return response()->json([
             'message' => 'vehicle With ID: ' . $request->vehicle_id . ' added Successfully to workshop With ID ' . $request->workshop_id,
             'data' => $vehicle_workshop
         ], 200);
+    }
+
+
+    public function setWorkshopFinancial()
+    {
+
+        return 'set function';
     }
 }

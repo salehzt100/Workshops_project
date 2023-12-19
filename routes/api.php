@@ -54,6 +54,8 @@ Route::prefix('/v1')->group(function () {
     Route::POST('workshops/{id}/payments', [WorkshopsController::class, 'setPayments']);
     Route::GET('workshops/{id}/vehicles', [WorkshopsController::class, 'getVehicles']);
     Route::POST('workshops/{workshop_id}/vehicles/{vehicle_id}', [WorkshopsController::class, 'setVehicles']);
+    Route::GET('workshops/{id}/workshopFinancials', [WorkshopsController::class, 'getWorkshopFinancial']);
+    Route::POST('workshops/{id}/workshopFinancials', [WorkshopsController::class, 'setWorkshopFinancial']);
 
 
 });
@@ -110,6 +112,5 @@ Route::prefix('/v1')->group(function () {
     Route::GET('workshopFinancials', [WorkshopFinancialProcessController::class, 'index']);
     Route::GET('workshopFinancials/{id}', [WorkshopFinancialProcessController::class, 'show']);
     Route::PUT('workshopFinancials/{id}', [WorkshopFinancialProcessController::class, 'update']);
-    Route::POST('workshopFinancials', [WorkshopFinancialProcessController::class, 'add']);
     Route::DELETE('workshopFinancials/{id}', [WorkshopFinancialProcessController::class, 'delete']);
 });
