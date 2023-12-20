@@ -55,7 +55,8 @@ Route::prefix('/v1')->group(function () {
     Route::GET('workshops/{id}/vehicles', [WorkshopsController::class, 'getVehicles']);
     Route::POST('workshops/{workshop_id}/vehicles/{vehicle_id}', [WorkshopsController::class, 'setVehicles']);
     Route::GET('workshops/{id}/workshopFinancials', [WorkshopsController::class, 'getWorkshopFinancial']);
-    Route::POST('workshops/{id}/workshopFinancials', [WorkshopsController::class, 'setWorkshopFinancial']);
+    Route::POST('workshops/{id}/workshopFinancials', [WorkshopsController::class, 'setFinancialProcess']);
+
 
 
 });
@@ -74,7 +75,6 @@ Route::prefix('/v1')->group(function () {
     Route::POST('vehicles/{id}/payments', [VehiclesController::class, 'setPayments']);
     Route::GET('vehicles/{id}/expenses', [VehiclesController::class, 'getExpenses']);
     Route::POST('vehicles/{id}/expenses', [VehiclesController::class, 'setExpenses']);
-
 
 });
 

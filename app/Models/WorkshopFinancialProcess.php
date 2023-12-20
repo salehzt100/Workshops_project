@@ -9,7 +9,7 @@ class WorkshopFinancialProcess extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['workshop_id', 'rate_per_hour_and_cup', 'price_per_hour_and_cup', 'total_amount'];
+    protected $fillable = ['workshop_id', 'rate_per_hour_and_cup', 'price_per_hour_and_cup', 'total_amount','payment_type'];
 
     public function workshop()
     {

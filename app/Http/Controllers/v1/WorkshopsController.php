@@ -10,8 +10,10 @@ use App\Models\Vehicle;
 use App\Models\Workshop;
 use App\Models\VehicleWorkshops;
 use App\Models\WorkshopFinancialProcess;
+use http\Env\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use PHPUnit\Exception;
 
@@ -355,9 +357,71 @@ class WorkshopsController extends Controller
     }
 
 
-    public function setWorkshopFinancial()
+    public function setFinancialProcess(Request $request, $id)
     {
+        try {
+            $workshop = Workshop::find($id);
 
-        return 'set function';
+            if (!$workshop) {
+                return response()->json(['error' => 'Workshop not found With ID ' . $id], 404);
+            }
+
+            $workshop_type = $workshop->workshop_type;
+
+            $validated_payload_data = $request->validate([
+                'total_amount' => [Rule::requiredIf(function () use ($workshop_type) {
+                    return $workshop_type === 'workshop';
+                }), 'numeric'],
+                'price_per_hour_and_cup' => [Rule::requiredIf(function () use ($workshop_type) {
+                    return $workshop_type === 'sellingAggregate' || $workshop_type === 'transportation';
+                }), 'numeric'],
+                'rate_per_hour_and_cup' => [Rule::requiredIf(function () use ($workshop_type) {
+                    return $workshop_type === 'sellingAggregate' || $workshop_type === 'transportation';
+                }), 'numeric'],
+            ]);
+
+            switch ($workshop_type) {
+                case 'workshop':
+                    $paymentType = 'ContractPayment';
+                    break;
+                case 'sellingAggregate':
+                    $paymentType = 'HourlyPayment';
+                    break;
+                case 'transportation':
+                    $paymentType = 'CupPayment';
+                    break;
+            }
+
+            $validated_payload_data['payment_type'] = $paymentType;
+            $validated_payload_data['workshop_id'] = $id;
+
+            if ($workshop_type === 'workshop') {
+                $validated_payload_data['rate_per_hour_and_cup'] = null;
+                $validated_payload_data['price_per_hour_and_cup'] = null;
+            } else {
+                $rate_per_hour_and_cup = $validated_payload_data['rate_per_hour_and_cup'];
+                $price_per_hour_and_cup = $validated_payload_data['price_per_hour_and_cup'];
+                $validated_payload_data['total_amount'] = $rate_per_hour_and_cup * $price_per_hour_and_cup;
+            }
+
+
+            /**           Filter out null values      */
+
+
+            $filteredData = array_filter($validated_payload_data, function ($value) {
+                return $value !== null;
+            });
+
+            $financial = WorkshopFinancialProcess::create($filteredData);
+
+            return response()->json([
+                'message' => 'Workshop financial process Created Successfully With ID: ' . $financial->id,
+                'data' => $financial
+            ], 200);
+        } catch (ValidationException $e) {
+            return response()->json(['error' => $e->validator->errors()], 422);
+        }
     }
+
+
 }
