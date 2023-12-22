@@ -14,6 +14,11 @@ class GasStationController extends Controller
         $gasStations = GasStation::paginate(10); // 10 is the number of items per page
         return GasStationResource::collection($gasStations);
     }
+    public function show($id)
+    {
+        $gasStation = GasStation::findOrFail($id);
+        return new GasStationResource($gasStation);
+    }
 
     public function store(Request $request)
     {
