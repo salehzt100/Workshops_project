@@ -19,19 +19,17 @@ class PaymentFactory extends Factory
     {
         return [
 
-            'payment_type' => $this->faker->randomElement(['employeeOvertime','vehicleCost', 'employeeSalary', 'stationRefill', 'Expenses', 'vehicleIncome', 'workshopFinancialProcess']),
+            'payment_type' => $this->faker->randomElement(['employeeOvertime', 'vehicleCost', 'employeeSalary', 'stationRefill', 'Expenses', 'vehicleIncome', 'workshopFinancialProcess']),
             'amount_type' => $this->faker->randomElement(['cash', 'check']),
             'check_id' =>  checks::factory(),
             'employee_overtime_id' => EmployeeOvertime::factory(),
             'employee_id' => Employee::factory(),
             'expenses_id' => Expense::factory(),
-            'vehicle_income_id' =>VehicleIncome::factory() ,
-            'workshop_id' =>Workshop::factory(),
-            'vehicle_id'=>Vehicle::factory(),
-            'amount'=>$this->faker->randomNumber(4),
+            'vehicle_income_id' => VehicleIncome::factory(),
+            'workshop_id' => Workshop::factory(),
+            'vehicle_id' => Vehicle::factory(),
+            'amount' => $this->faker->randomNumber(4),
             'note' => $this->faker->sentence,
         ];
-
-
     }
 }

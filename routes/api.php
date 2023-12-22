@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\v1\GasStationController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\v1\EmployeeController;
@@ -56,9 +57,6 @@ Route::prefix('/v1')->group(function () {
     Route::POST('workshops/{workshop_id}/vehicles/{vehicle_id}', [WorkshopsController::class, 'setVehicles']);
 
     Route::POST('workshops/{id}/workshopFinancials', [WorkshopsController::class, 'setFinancialProcess']);
-
-
-
 });
 
 
@@ -75,7 +73,6 @@ Route::prefix('/v1')->group(function () {
     Route::POST('vehicles/{id}/payments', [VehiclesController::class, 'setPayments']);
     Route::GET('vehicles/{id}/expenses', [VehiclesController::class, 'getExpenses']);
     Route::POST('vehicles/{id}/expenses', [VehiclesController::class, 'setExpenses']);
-
 });
 
 
@@ -88,7 +85,6 @@ Route::prefix('/v1')->group(function () {
     Route::PUT('checks/{id}', [checkController::class, 'update']);
     Route::POST('checks', [checkController::class, 'add']);
     Route::DELETE('checks/{id}', [checkController::class, 'delete']);
-
 });
 
 
@@ -114,4 +110,16 @@ Route::prefix('/v1')->group(function () {
     Route::PUT('workshopFinancials/{id}', [WorkshopFinancialProcessController::class, 'update']);
     Route::POST('workshopFinancials', [WorkshopFinancialProcessController::class, 'add']);
     Route::DELETE('workshopFinancials/{id}', [WorkshopFinancialProcessController::class, 'delete']);
+});
+
+
+// gas station routes
+
+Route::prefix('/v1')->group(function () {
+    Route::GET('gasStations', [GasStationController::class, 'index']);
+    Route::GET('gasStations/{id}', [GasStationController::class, 'show']);
+    Route::PUT('gasStations/{id}', [GasStationController::class, 'update']);
+    Route::POST('gasStations', [GasStationController::class, 'store']);
+    Route::DELETE('gasStations/{id}', [GasStationController::class, 'destroy']);
+    Route::post('/gasStations/{id}/add-balance', [GasStationController::class, 'addBalance']);
 });

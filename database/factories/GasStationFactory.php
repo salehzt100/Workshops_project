@@ -19,10 +19,9 @@ class GasStationFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'=>$this->faker->name,
-            'owner_id'=>Owner::factory(),
-            'workshop_id'=>Workshop::factory(),
-            'current_balance'=> $this->faker->numberBetween(10000,20000)
+            'name' => $this->faker->name,
+            'owner_id' => Owner::factory(),
+            'current_balance' => $this->faker->numberBetween(10000, 20000)
         ];
     }
 }

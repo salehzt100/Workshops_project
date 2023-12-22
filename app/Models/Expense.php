@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Expense extends Model
 {
     use HasFactory;
-    protected $fillable = ['expense_type', 'amount', 'vehicle_id', 'gas_station_id', 'workshop_id', 'workshop_vehicle_id', 'person_name', 'notes'];
+    // no need for date, time stamp will be in the migration
+    protected $fillable = ['expense_type', 'amount', 'vehicle_id', 'gas_station_id', 'workshop_id', 'workshop_vehicle_id', 'person_name', 'notes', 'timestamp'];
 
     public function vehicle(): BelongsTo
     {

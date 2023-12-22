@@ -12,7 +12,7 @@ class GasStation extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $fillable = ['name', 'owner_id', 'Workshop_id', 'current_balance'];
+    protected $fillable = ['name', 'owner_id', 'current_balance'];
 
 
 

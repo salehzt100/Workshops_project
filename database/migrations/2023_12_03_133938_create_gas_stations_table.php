@@ -15,8 +15,7 @@ return new class extends Migration
 
             $table->id();
             $table->string('name');
-            $table->foreignId('owner_id');
-            $table->foreignId('workshop_id');
+            $table->foreignId('owner_id')->nullable()->constrained()->onDelete('set null');
             $table->decimal('current_balance', 10, 2);
             $table->timestamps();
         });
