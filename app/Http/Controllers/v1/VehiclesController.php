@@ -6,6 +6,8 @@ use App\Models\checks;
 use App\Models\Expense;
 use App\Models\Payment;
 use App\Models\Vehicle;
+use App\Models\VehicleIncome;
+use App\Models\VehicleWorkshops;
 use Illuminate\Routing\Controller;
 
 use Illuminate\Http\Request;
@@ -18,14 +20,14 @@ class VehiclesController extends Controller
 
 
         $current_page = $request->input('page', 1);
-        $limit = $request->input('limit', 2);
+        $limit = $request->input('limit', 4);
 
 
         $vehicles = Vehicle::query()
-            ->paginate($limit, ['id', 'vehicle_name', 'vehicle_type', 'full_vehicles_price', 'remaining_amount'], "page", $current_page)
-            ->items();
+            ->paginate($limit, ['id', 'vehicle_name', 'vehicle_type', 'full_vehicles_price'], "page", $current_page)
+         ->items();
 
-        return ['data' => $vehicles];
+        return response()->json($vehicles,200);
     }
 
     public function show($id){
@@ -279,6 +281,40 @@ public  function  delete($id)
 
     }
 
+
+    public function setIncome(Request $request,$id){
+
+        try {
+
+            $vehicle=Vehicle::find($id);
+            if (!$vehicle){
+                return response()->json([
+                    'status' => 404,
+                    'error' => "vehicle with ID $id  not found ."
+                ], 404);
+            }
+            $vehicle_workshop = VehicleWorkshops::where('vehicle_id',$id)->first();
+
+            if (!$vehicle_workshop){
+                return response()->json([
+                    'status' => 404,
+                    'error' => "vehicle with ID $id is currently not working in any workshop ."
+                ], 404);
+            }
+            $validated_payload_data = $request->validate([
+                'hours_worked' => 'required|numeric',
+                'hourly_rate' => 'required|numeric'
+            ]);
+
+            $validated_payload_data['vehicle_workshop_id']=$vehicle_workshop->id;
+
+            $income=VehicleIncome::create($validated_payload_data);
+
+            return response()->json(['message' => 'vehicle income created Successfully With ID: ' . $income->id, 'data' => $income ], 200);
+        } catch (ValidationException $e) {
+            return response()->json(['error' => $e->validator->errors()], 422);
+        }
+    }
 
 
 

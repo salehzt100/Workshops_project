@@ -8,10 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class VehicleIncome extends Model
 {
     use HasFactory;
-    protected $fillable = ['workshop_vehicles_id', 'hours_worked', 'income', 'date'];
+    protected $fillable = ['vehicle_workshop_id', 'hours_worked','hourly_rate'];
 
     public function workshopVehicle()
     {
-        return $this->belongsTo(WorkshopVehicles::class, 'WorkshopVehicles_id');
+        return $this->belongsTo(VehicleWorkshops::class, 'vehicle_workshops_id');
+    }
+
+    protected $appends =['income'];
+
+    public function getIncomeAttribute(){
+
+        $hours_worked=$this->hours_worked;
+        $hourly_rate=$this->hourly_rate;
+        return $hours_worked*$hourly_rate;
     }
 }

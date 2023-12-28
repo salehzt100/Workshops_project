@@ -18,12 +18,9 @@ class VehicleIncomeFactory extends Factory
         $hours_worked = $this->faker->randomFloat(2, 1, 15);
         $hourly_rate = $this->faker->randomFloat(0, 15, 30);
         return [
-            'workshop_vehicles_id' => VehicleWorkshops::factory(),
+            'vehicle_workshop_id' => VehicleWorkshops::factory(),
             'hours_worked' => $hours_worked,
             'hourly_rate' => $hourly_rate,
-            'date' => $this->faker->date,
-            'income'=>$hours_worked*$hourly_rate
-
         ];
     }
 }

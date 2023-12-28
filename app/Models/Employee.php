@@ -27,8 +27,9 @@ class Employee extends Model
     protected $appends = ['total_overtime_hour', 'last_overtime_hour', 'overtime_and_award_collections','total_advances'];
 
 
-    public function getTotalAdvanceAttribute()
+    public function getTotalAdvancesAttribute()
     {
+        return 0;
 
     }
 

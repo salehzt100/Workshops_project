@@ -42,4 +42,7 @@ Route::get("/api/{version}/employees", function(){
 });*/
 
 
+Route::view('/','welcome');
+
+
 include(base_path('routes/api.php'));

@@ -26,8 +26,7 @@ class EmployeeController extends Controller
         $current_page = $request->input('page',1);
         $limit = $request->input('limit',2);
         $employees = Employee::query()
-            ->paginate($limit, ['id', 'name', 'national_id', 'phone', 'status', 'created_at'], "page", $current_page)
-            ->items();
+            ->paginate($limit, ['id', 'name', 'national_id', 'phone', 'status', 'created_at'], "page", $current_page);
 
         return ['data' => $employees];
     }

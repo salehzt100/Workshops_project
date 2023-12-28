@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Http\Controllers\v1\EmployeeController;
 use App\Http\Controllers\v1\EmployeeOvertimeController;
 use App\Http\Controllers\v1\WorkshopsController;
@@ -11,6 +10,8 @@ use App\Http\Controllers\v1\CheckController;
 use App\Http\Controllers\v1\VehiclesController;
 use App\Http\Controllers\v1\OwnersController;
 use App\Http\Controllers\v1\WorkshopFinancialProcessController;
+use App\Http\Controllers\v1\VehicleIncomesController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -44,7 +45,6 @@ Route::prefix('/v1')->group(function () {
 // Workshops routes
 
 Route::prefix('/v1')->group(function () {
-
     Route::GET('workshops', [WorkshopsController::class, 'index']);
     Route::GET('workshops/{id}', [WorkshopsController::class, 'show']);
     Route::PUT('workshops/{id}', [WorkshopsController::class, 'update']);
@@ -56,8 +56,6 @@ Route::prefix('/v1')->group(function () {
     Route::POST('workshops/{workshop_id}/vehicles/{vehicle_id}', [WorkshopsController::class, 'setVehicles']);
     Route::GET('workshops/{id}/workshopFinancials', [WorkshopsController::class, 'getWorkshopFinancial']);
     Route::POST('workshops/{id}/workshopFinancials', [WorkshopsController::class, 'setFinancialProcess']);
-
-
 
 });
 
@@ -76,13 +74,15 @@ Route::prefix('/v1')->group(function () {
     Route::GET('vehicles/{id}/expenses', [VehiclesController::class, 'getExpenses']);
     Route::POST('vehicles/{id}/expenses', [VehiclesController::class, 'setExpenses']);
 
+    Route::POST('vehicles/{id}/vehicleIncomes', [VehiclesController::class, 'setIncome']);
+
+
 });
 
 
 //   check routs
 
 Route::prefix('/v1')->group(function () {
-
     Route::GET('checks', [CheckController::class, 'index']);
     Route::GET('checks/{id}', [checkController::class, 'show']);
     Route::PUT('checks/{id}', [checkController::class, 'update']);
@@ -90,8 +90,6 @@ Route::prefix('/v1')->group(function () {
     Route::DELETE('checks/{id}', [checkController::class, 'delete']);
 
 });
-
-
 
 
 // Owner routes
@@ -105,7 +103,6 @@ Route::prefix('/v1')->group(function () {
 });
 
 
-
 // workshop financial routes
 
 Route::prefix('/v1')->group(function () {
@@ -113,4 +110,14 @@ Route::prefix('/v1')->group(function () {
     Route::GET('workshopFinancials/{id}', [WorkshopFinancialProcessController::class, 'show']);
     Route::PUT('workshopFinancials/{id}', [WorkshopFinancialProcessController::class, 'update']);
     Route::DELETE('workshopFinancials/{id}', [WorkshopFinancialProcessController::class, 'delete']);
+});
+
+
+// vehicle income routes
+
+Route::prefix('/v1')->group(function () {
+    Route::GET('vehicleIncomes', [VehicleIncomesController::class, 'index']);
+    Route::GET('vehicleIncomes/{id}', [VehicleIncomesController::class, 'show']);
+    Route::PUT('vehicleIncomes/{id}', [VehicleIncomesController::class, 'update']);
+    Route::DELETE('vehicleIncomes/{id}', [VehicleIncomesController::class, 'delete']);
 });
