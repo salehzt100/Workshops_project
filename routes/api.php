@@ -11,6 +11,7 @@ use App\Http\Controllers\v1\WorkshopsController;
 use App\Http\Controllers\v1\CheckController;
 use App\Http\Controllers\v1\VehiclesController;
 use App\Http\Controllers\v1\OwnersController;
+use App\Http\Controllers\v1\WithDrawController;
 use App\Http\Controllers\v1\WorkshopFinancialProcessController;
 /*
 |--------------------------------------------------------------------------
@@ -118,8 +119,9 @@ Route::prefix('/v1')->group(function () {
 Route::prefix('/v1')->group(function () {
     Route::GET('gasStations', [GasStationController::class, 'index']);
     Route::GET('gasStations/{id}', [GasStationController::class, 'show']);
-    Route::PUT('gasStations/{id}', [GasStationController::class, 'update']);
+    Route::patch('gasStations/{id}', [GasStationController::class, 'update']);
     Route::POST('gasStations', [GasStationController::class, 'store']);
     Route::DELETE('gasStations/{id}', [GasStationController::class, 'destroy']);
-    Route::post('/gasStations/{id}/add-balance', [GasStationController::class, 'addBalance']);
+    Route::patch('/gasStations/{id}/add-balance', [GasStationController::class, 'addBalance']);
+    Route::post('/gas-stations/{id}/withdraw-expense', [WithDrawController::class, 'store']);
 });

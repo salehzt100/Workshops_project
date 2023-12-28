@@ -30,7 +30,13 @@ class GasStationController extends Controller
 
         $gasStation = GasStation::create($validatedData);
 
-        return new GasStationResource($gasStation);
+        return response()->json(
+            [
+                'message' => 'Gas station created successfully',
+                'gasStation' => new GasStationResource($gasStation)
+            ],
+            201
+        );
     }
     public function update(Request $request, $id)
     {
