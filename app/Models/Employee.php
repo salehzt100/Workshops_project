@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models;
@@ -12,7 +13,7 @@ class Employee extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'national_id', 'phone', 'status', 'national_id', 'salary'];
+    protected $fillable = ['name', 'national_id', 'phone', 'status', 'salary'];
 
     public function payments(): HasMany
     {
@@ -24,12 +25,11 @@ class Employee extends Model
     }
 
 
-    protected $appends = ['total_overtime_hour', 'last_overtime_hour', 'overtime_and_award_collections','total_advances'];
+    protected $appends = ['total_overtime_hour', 'last_overtime_hour', 'overtime_and_award_collections', 'total_advances'];
 
 
     public function getTotalAdvanceAttribute()
     {
-
     }
 
 
@@ -85,8 +85,5 @@ class Employee extends Model
         }
 
         return $overtime_and_award_collections;
-
     }
-
-
 }

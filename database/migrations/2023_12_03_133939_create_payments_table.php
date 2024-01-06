@@ -12,17 +12,18 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->enum('payment_type', ['employeeOvertime', 'employeeSalary', 'stationRefill', 'Expenses', 'vehicleIncome', 'workshopFinancialProcess','vehicleCost']);
+            $table->enum('payment_type', ['employeeOvertime', 'employeeSalary', 'employeeAdvance', 'stationRefill', 'Expenses', 'vehicleIncome', 'workshopFinancialProcess', 'vehicleCost']);
+            // vehicle cost==  sell the vehicle
             $table->enum('amount_type', ['cash', 'check']);
-            $table->foreignId('check_id')->nullable();
-            $table->foreignId('employee_overtime_id')->nullable();
+            $table->integer('amount');
+            $table->foreignId('check_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('employee_overtime_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('employee_id')->nullable()->onDelete('cascade');
             $table->foreignId('expenses_id')->nullable();
             $table->foreignId('vehicle_income_id')->nullable();
             $table->foreignId('vehicle_id')->nullable();
             $table->foreignId('workshop_id')->nullable();
             $table->string('note', 255)->nullable();
-            $table->integer('amount');
             $table->timestamps();
         });
     }
@@ -36,7 +37,3 @@ return new class extends Migration
         Schema::dropIfExists('payments');
     }
 };
-
-
-
-

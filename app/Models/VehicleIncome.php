@@ -12,6 +12,6 @@ class VehicleIncome extends Model
 
     public function workshopVehicle()
     {
-        return $this->belongsTo(WorkshopVehicles::class, 'WorkshopVehicles_id');
+        return $this->belongsTo(VehicleIncome::class, 'WorkshopVehicles_id');
     }
 }

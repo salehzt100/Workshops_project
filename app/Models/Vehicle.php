@@ -11,7 +11,7 @@ class Vehicle extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['vehicle_name','payment_type', 'full_vehicles_price', 'vehicle_type', 'vehicles_number_or_identifier', 'sale_status', 'sale_price'];
+    protected $fillable = ['vehicle_name', 'full_vehicles_price', 'vehicle_type', 'vehicles_number_or_identifier', 'sale_status', 'sale_price'];
 
     public function workshops()
     {
@@ -36,7 +36,6 @@ class Vehicle extends Model
 
         $total_amount_paid_so_far = $this->getAmountPaidInCashAttribute() + $this->getAmountPaidByChecksAttribute();
         return $total_amount_paid_so_far;
-
     }
 
     public function getAmountPaidInCashAttribute()
@@ -86,6 +85,4 @@ class Vehicle extends Model
 
         return 'working';
     }
-
 }
-

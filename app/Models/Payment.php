@@ -12,15 +12,16 @@ class Payment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['amount', 'payment_type','amount_type', 'check_id', 'employee_overtime_id', 'employee_id', 'gas_station_refill_id', 'expenses_id', 'vehicle_income_id', 'workshop_id', 'note','vehicle_id'];
+    protected $fillable = ['amount', 'payment_type', 'amount_type', 'check_id', 'employee_overtime_id', 'employee_id', 'gas_station_id', 'expense_id', 'vehicle_income_id', 'vehicle_id', 'workshop_id', 'note', 'timestamp'];
 
 
-    public function workshops(){
-        return $this->belongsTo(Workshop::class);
+    public function workshop()
+    {
+        return $this->belongsTo(Workshop::class, 'workshop_id');
     }
 
 
-  public function employee(): BelongsTo
+    public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class, 'employee_id');
     }
@@ -31,9 +32,9 @@ class Payment extends Model
     }
 
 
-    public function check(): HasOne
+    public function check(): BelongsTo
     {
-        return $this->hasOne(checks::class);
+        return $this->belongsTo(checks::class);
     }
 
     public function expense(): BelongsTo
@@ -46,9 +47,14 @@ class Payment extends Model
         return $this->belongsTo(VehicleIncome::class);
     }
 
+    public function vehicle(): BelongsTo
+    {
+        return $this->belongsTo(Vehicle::class);
+    }
+
+    //NOTE: there is no more need for this, as the payment will be to a workshop according to the desired amount
     public function workshopFinancialProcess(): BelongsTo
     {
         return $this->belongsTo(WorkshopFinancialProcess::class);
     }
-
 }
